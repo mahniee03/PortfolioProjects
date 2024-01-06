@@ -75,7 +75,7 @@ FROM Doctors d
 ORDER BY d.Name ASC;
  
  -- Task 5: Analyze the patient demographic by counting the number of patients of each gender.
-SELECT p.Gender, COUNT(*) AS num_patients FROM Patients p
+SELECT p.Gender, COUNT(*) as num_patients FROM Patients p
 GROUP BY p.Gender;
 
 -- Task 6: Review the scheduling load by finding all appointments scheduled in a specific year.
@@ -89,7 +89,7 @@ SELECT * ,
 CASE
 	WHEN YEAR(Date) = 2023 AND MONTH(Date) > 9 THEN 'Recent Appointment'
     	ELSE 'Old Appointment'
-END AS AppointmentStatus
+END as AppointmentStatus
 FROM Appointments a;
 
 -- Task 8: Remove appointments from the database that have not led to any treatments.
@@ -118,10 +118,10 @@ ORDER BY 1 DESC;
 -- Set Operations and Complex Queries
 -- Task 13: Create a complete contact list that includes both healthcare personnel (doctors in this case) and patients, including all entries even if some personnel are also patients.
 SELECT 
-    DoctorID AS ID, 
+    DoctorID as ID, 
     Name, 
     ContactInfo, 
-    'Doctor' AS Role
+    'Doctor' as Role
 FROM Doctors
 
 UNION ALL
@@ -130,7 +130,7 @@ SELECT
     PatientID, 
     Name, 
     ContactInfo, 
-    'Patient' AS Role
+    'Patient' as Role
 FROM Patients;
 
 -- Task 14: Identify doctors who are busier than average, based on the number of appointments.
@@ -142,7 +142,7 @@ GROUP BY a.DoctorID
 HAVING COUNT(*) > (SELECT AVG(Num) 
 			FROM (SELECT COUNT(*) Num 
 				FROM Appointments a1 
-                         	GROUP BY a1.DoctorID) AS Num_Appointments)
+                         	GROUP BY a1.DoctorID) as Num_Appointments)
 ORDER BY 2 DESC;
 
 -- Task 15: For a detailed treatment report, list all appointments along with their corresponding treatment outcomes.
@@ -176,7 +176,7 @@ ORDER BY d.DoctorID, a.Date, a.Time;
 -- Task 19: Identify days with the highest number of appointments.
 SELECT a.Date, COUNT(*) Num_Appointments FROM Appointments a
 GROUP BY a.Date
-HAVING COUNT(*) = (SELECT MAX(Num) FROM(SELECT COUNT(*) Num FROM Appointments a1 GROUP BY a1.Date) AS Num_Appointment );
+HAVING COUNT(*) = (SELECT MAX(Num) FROM(SELECT COUNT(*) Num FROM Appointments a1 GROUP BY a1.Date) as Num_Appointment );
 
 -- Task 20: Analyze the distribution of patients among doctors.
 SELECT 
@@ -237,6 +237,6 @@ SELECT
 FROM Appointments a
 JOIN (SELECT COUNT(*) Num, t.AppointmentID 
       FROM Treatments t
-      GROUP BY 2) AS sub ON sub.AppointmentID = a.AppointmentID
+      GROUP BY 2) as sub ON sub.AppointmentID = a.AppointmentID
 GROUP BY 1,2
 ORDER BY 3;
