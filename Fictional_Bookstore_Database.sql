@@ -1,36 +1,36 @@
 CREATE TABLE Authors(
-  AuthorID INT PRIMARY KEY,
-  AuthorName VARCHAR(50) NOT NULL,
-  BirthYear DATE NOT NULL,
-  Nationality VARCHAR(50) NOT NULL
+    AuthorID INT PRIMARY KEY,
+    AuthorName VARCHAR(50) NOT NULL,
+    BirthYear DATE NOT NULL,
+    Nationality VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Books(
-  BookID INT PRIMARY KEY,
-  Title VARCHAR(250) NOT NULL,
-  AuthorID INT NOT NULL,
-  Genre VARCHAR(50) NOT NULL,
-  Price FLOAT NOT NULL,
-  PublishDate DATE NOT NULL
-  FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(250) NOT NULL,
+    AuthorID INT NOT NULL,
+    Genre VARCHAR(50) NOT NULL,
+    Price FLOAT NOT NULL,
+    PublishDate DATE NOT NULL
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
 );
 
 CREATE TABLE Customers(
-  CustomerID INT PRIMARY KEY,
-  CustomerName VARCHAR(50) NOT NULL,
-  Email VARCHAR(50) NOT NULL,
-  JoinDate DATE NOT NULL
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(50) NOT NULL,
+    Email VARCHAR(50) NOT NULL,
+    JoinDate DATE NOT NULL
 );
 
 CREATE TABLE Sales(
-  SaleID INT PRIMARY KEY,
-  BookID INT NOT NULL,
-  CustomerID INT NOT NULL,
-  SaleDate DATE NOT NULL,
-  Quantity INT NOT NULL,
-  TotalPrice FLOAT NOT NULL
-  FOREIGN KEY (BookID) REFERENCES Books(BookID)
-  FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+    SaleID INT PRIMARY KEY,
+    BookID INT NOT NULL,
+    CustomerID INT NOT NULL,
+    SaleDate DATE NOT NULL,
+    Quantity INT NOT NULL,
+    TotalPrice FLOAT NOT NULL
+    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
 -- Basic Data Manipulation Tasks
